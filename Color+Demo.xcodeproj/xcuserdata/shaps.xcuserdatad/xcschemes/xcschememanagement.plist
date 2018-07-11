@@ -4,10 +4,53 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Color+Demo.xcscheme</key>
+		<key>Color+iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Color+macOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>Color.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>54696F7520F5FBA300BF1D48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54C003E420F5F904000F1367</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54E2D18920F504D30016D833</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54E2D19F20F504DF0016D833</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54E2D1A720F504E00016D833</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
