@@ -34,7 +34,38 @@ extension SystemColor {
     ///
     /// - Parameter color: The HSV color representation
     public convenience init(color: Color<HSV>) {
-        fatalError()
+        let h = color.model.hue
+        let s = color.model.saturation
+        let v = color.model.value
+
+        if s == 0 { // Achromatic grey
+            self.init(red: v, green: v, blue: v, alpha: color.model.alpha)
+            return
+        }
+
+        let angle = (h >= 360 ? 0 : h)
+        let sector = angle / 60 // Sector
+        let i = floor(sector)
+        let f = sector - i // Factorial part of h
+
+        let p = v * (1 - s)
+        let q = v * (1 - (s * f))
+        let t = v * (1 - (s * (1 - f)))
+
+        switch(i) {
+        case 0:
+            self.init(red: v, green: t, blue: p, alpha: color.model.alpha)
+        case 1:
+            self.init(red: q, green: v, blue: p, alpha: color.model.alpha)
+        case 2:
+            self.init(red: p, green: v, blue: t, alpha: color.model.alpha)
+        case 3:
+            self.init(red: p, green: q, blue: v, alpha: color.model.alpha)
+        case 4:
+            self.init(red: t, green: p, blue: v, alpha: color.model.alpha)
+        default:
+            self.init(red: v, green: p, blue: q, alpha: color.model.alpha)
+        }
     }
 
     /// Makes a new system color using an CMYK value
@@ -60,23 +91,73 @@ extension SystemColor {
 
     /// Returns an RGB color representation
     public var rgb: Color<RGB> {
-        fatalError()
+        let colorSpace = CGColorSpace(name: CGColorSpace.extendedSRGB)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)
+
+        let red: CGFloat = cgColor?.components?[0] ?? 0
+        let green: CGFloat = cgColor?.components?[1] ?? 0
+        let blue: CGFloat = cgColor?.components?[2] ?? 0
+        let alpha: CGFloat = cgColor?.components?[3] ?? 0
+
+        return Color(RGB(red: red, blue: blue, green: green, alpha: alpha))
     }
 
     /// Returns an HSV color representation
     public var hsv: Color<HSV> {
-        fatalError()
+        let rgb = self.rgb
+        let r = rgb.model.red, g = rgb.model.green, b = rgb.model.blue
+
+        let min = r < g ? (r < b ? r : b) : (g < b ? g : b)
+        let max = r > g ? (r > b ? r : b) : (g > b ? g : b)
+
+        let v = max
+        let delta = max - min
+
+        guard delta > 0.00001 else { // no saturation
+            return Color(HSV(hue: 0, saturation: 0, value: max, alpha: rgb.model.alpha))
+        }
+
+        guard max > 0 else { // Undefined, achromatic grey
+            return Color(HSV(hue: -1, saturation: 0, value: v, alpha: rgb.model.alpha))
+        }
+
+        let s = delta / max
+
+        let hue: (CGFloat, CGFloat) -> CGFloat = { max, delta -> CGFloat in
+            if r == max { return (g - b) / delta } // between yellow & magenta
+            else if g == max { return 2 + (b - r) / delta } // between cyan & yellow
+            else { return 4 + (r - g) / delta } // between magenta & cyan
+        }
+
+        let h = hue(max, delta) * 60 // In degrees
+        return Color(HSV(hue: (h < 0 ? h + 360 : h), saturation: s, value: v, alpha: rgb.model.alpha))
     }
 
     /// Returns an HSL color representation
     public var hsl: Color<HSL> {
-        fatalError()
+        let colorSpace = CGColorSpace(name: CGColorSpace.extendedSRGB)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)
+
+        let hue: CGFloat = cgColor?.components?[0] ?? 0
+        let saturation: CGFloat = cgColor?.components?[1] ?? 0
+        let lightness: CGFloat = cgColor?.components?[2] ?? 0
+        let alpha: CGFloat = cgColor?.components?[3] ?? 0
+
+        return Color(HSL(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha))
     }
 
     /// Returns an CMYK color representation
     public var cmyk: Color<CMYK> {
-        fatalError()
-    }
+        let colorSpace = CGColorSpace(name: CGColorSpace.genericCMYK)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)!
 
+        let cyan: CGFloat = cgColor.components?[0] ?? 0
+        let magenta: CGFloat = cgColor.components?[1] ?? 0
+        let yellow: CGFloat = cgColor.components?[2] ?? 0
+        let black: CGFloat = cgColor.components?[3] ?? 0
+        let alpha: CGFloat = cgColor.components?[4] ?? 0
+
+        return Color(CMYK(cyan: cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha))
+    }
 
 }

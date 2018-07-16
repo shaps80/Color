@@ -73,9 +73,6 @@ extension ExpressibleAsHexadecimal where Self == CMYK {
 
 // Adds ExpressibleAsHexadecimal conformance to any color where its model also conforms
 extension Color: ExpressibleAsHexadecimal where Model: ExpressibleAsHexadecimal {
-    public typealias StringLiteralType = String
-    public typealias ExtendedGraphemeClusterLiteralType = String
-    public typealias UnicodeScalarLiteralType = String
 
     /// Returns the hex value for this color
     public var hexValue: String {
@@ -91,7 +88,19 @@ extension Color: ExpressibleAsHexadecimal where Model: ExpressibleAsHexadecimal 
 
 }
 
-// MARK: - String Literal Support
+extension Color: ExpressibleByUnicodeScalarLiteral where Model: ExpressibleAsHexadecimal {
+    public typealias UnicodeScalarLiteralType = String
+}
+
+extension Color: ExpressibleByExtendedGraphemeClusterLiteral where Model: ExpressibleAsHexadecimal {
+    public typealias ExtendedGraphemeClusterLiteralType = String
+}
+
+extension Color: ExpressibleByStringLiteral where Model: ExpressibleAsHexadecimal {
+    public typealias StringLiteralType = String
+}
+
+// MARK: - String Literal Support for Hex Values
 
 extension ExpressibleAsHexadecimal {
     public init(stringLiteral value: String) {
