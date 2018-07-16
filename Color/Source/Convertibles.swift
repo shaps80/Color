@@ -36,7 +36,7 @@ extension HEXValueConvertible {
 }
 
 // Adds HEXValueConvertible support to any color where its model also supports it
-extension HEXValueConvertible where Self: Color, Self.ModelType: HEXValueConvertible {
+extension HEXValueConvertible where Self: ColorProtocol, Self.ModelType: HEXValueConvertible {
     public var hexValue: String {
         return model.hexValue
     }

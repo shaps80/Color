@@ -9,7 +9,7 @@
 import Foundation
 
 /// Defines a protocol for representing color values
-public protocol Color {
+public protocol ColorProtocol {
 
     /// The underlying model type that will represent this color
     associatedtype ModelType: ColorModel
@@ -25,7 +25,7 @@ public protocol Color {
 }
 
 /// Defines an RGB color value
-public struct RGBColor<Model>: Color where Model: RGBColorModel {
+public struct RGBColor<Model>: ColorProtocol where Model: RGBColorModel {
 
     /// The model type for this color, either RGB, HSL or HSV
     public typealias ModelType = Model
@@ -43,7 +43,7 @@ public struct RGBColor<Model>: Color where Model: RGBColorModel {
 }
 
 /// Defines a CMYK color value
-public struct CMYKColor: Color {
+public struct CMYKColor: ColorProtocol {
 
     /// The model type for this color, in this case CMYK
     public typealias ModelType = CMYK

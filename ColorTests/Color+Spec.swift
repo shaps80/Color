@@ -16,7 +16,7 @@ final class Color_Spec: QuickSpec {
     override func spec() {
         describe("when initialising a color") {
             it("it should initialise correctly") {
-                let color = Color(white: 1, alpha: 1)
+                let color = ColorProtocol(white: 1, alpha: 1)
                 expect(color).to(equal(NSColor(white: 1, alpha: 1)))
             }
         }
