@@ -15,7 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let rgb: Color.RGBColor<HSL> = "#fff" // initialize with a RGB-based hex value
+        let rgb: Color<HSL> = "#fff" // initialize with a RGB-based hex value
         let cmyk = rgb.cmyk // cmyk can't be easily converted back to rgb so its not implemented
         let cmykHex = cmyk.hexValue // would print a CMYK-based hex value
     }

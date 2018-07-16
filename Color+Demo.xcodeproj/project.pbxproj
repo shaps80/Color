@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5449406020FD410F00EDFF9E /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455244620FD2E6800C20B3F /* SystemColor.swift */; };
+		5449406320FD478900EDFF9E /* Hexidecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449406120FD477300EDFF9E /* Hexidecimal.swift */; };
 		5467449120F6051800416BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467449020F6051800416BE6 /* AppDelegate.swift */; };
 		5467449820F6051800416BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5467449720F6051800416BE6 /* Assets.xcassets */; };
 		5467449B20F6051800416BE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5467449920F6051800416BE6 /* LaunchScreen.storyboard */; };
@@ -17,7 +19,7 @@
 		54696F8920F5FD2700BF1D48 /* Color.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E2D1A020F504DF0016D833 /* Color.framework */; };
 		54696F8A20F5FD2700BF1D48 /* Color.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54E2D1A020F504DF0016D833 /* Color.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54696F8F20F5FE0C00BF1D48 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54696F8E20F5FE0B00BF1D48 /* MainMenu.xib */; };
-		549D3AA020FD381600C221A0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA40E20FCC78E00DE29B9 /* Colors.swift */; };
+		549D3AA020FD381600C221A0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA40E20FCC78E00DE29B9 /* Color.swift */; };
 		549D3AA120FD381600C221A0 /* ColorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455244820FD2F1900C20B3F /* ColorModels.swift */; };
 		549D3AA220FD381600C221A0 /* Convertibles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455244A20FD2F4300C20B3F /* Convertibles.swift */; };
 		54E2D1A920F504E00016D833 /* Color.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E2D1A020F504DF0016D833 /* Color.framework */; };
@@ -90,6 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5449406120FD477300EDFF9E /* Hexidecimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexidecimal.swift; sourceTree = "<group>"; };
 		5455244620FD2E6800C20B3F /* SystemColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
 		5455244820FD2F1900C20B3F /* ColorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModels.swift; sourceTree = "<group>"; };
 		5455244A20FD2F4300C20B3F /* Convertibles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertibles.swift; sourceTree = "<group>"; };
@@ -112,7 +115,7 @@
 		54E2D1BF20F5080E0016D833 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		54E2D1C020F5080E0016D833 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		54E2D1C620F5083A0016D833 /* Color+Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Spec.swift"; sourceTree = "<group>"; };
-		54FBA40E20FCC78E00DE29B9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		54FBA40E20FCC78E00DE29B9 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,9 +232,10 @@
 		54E2D1CA20F50A760016D833 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				54FBA40E20FCC78E00DE29B9 /* Colors.swift */,
+				54FBA40E20FCC78E00DE29B9 /* Color.swift */,
 				5455244820FD2F1900C20B3F /* ColorModels.swift */,
 				5455244A20FD2F4300C20B3F /* Convertibles.swift */,
+				5449406120FD477300EDFF9E /* Hexidecimal.swift */,
 				5455244620FD2E6800C20B3F /* SystemColor.swift */,
 			);
 			path = Source;
@@ -431,7 +435,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				549D3AA020FD381600C221A0 /* Colors.swift in Sources */,
+				5449406320FD478900EDFF9E /* Hexidecimal.swift in Sources */,
+				5449406020FD410F00EDFF9E /* SystemColor.swift in Sources */,
+				549D3AA020FD381600C221A0 /* Color.swift in Sources */,
 				549D3AA120FD381600C221A0 /* ColorModels.swift in Sources */,
 				549D3AA220FD381600C221A0 /* Convertibles.swift in Sources */,
 			);

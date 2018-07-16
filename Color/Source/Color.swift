@@ -25,7 +25,7 @@ public protocol ColorProtocol {
 }
 
 /// Defines an RGB color value
-public struct RGBColor<Model>: ColorProtocol where Model: RGBColorModel {
+public struct Color<Model>: ColorProtocol where Model: ColorModel {
 
     /// The model type for this color, either RGB, HSL or HSV
     public typealias ModelType = Model
@@ -41,22 +41,3 @@ public struct RGBColor<Model>: ColorProtocol where Model: RGBColorModel {
     }
 
 }
-
-/// Defines a CMYK color value
-public struct CMYKColor: ColorProtocol {
-
-    /// The model type for this color, in this case CMYK
-    public typealias ModelType = CMYK
-
-    /// The underlying model value
-    public var model: ModelType
-
-    /// Makes a new CMYK color value using the specified model
-    ///
-    /// - Parameter model: The CMYK model for this color
-    public init(_ model: ModelType) {
-        self.model = model
-    }
-
-}
-

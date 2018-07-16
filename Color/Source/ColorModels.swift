@@ -15,7 +15,7 @@ import CoreGraphics
 public protocol ColorModel { }
 
 /// Defines an RGB based color model
-public protocol RGBColorModel: ColorModel, HEXValueConvertible { }
+public protocol RGBColorModel: ColorModel, ExpressibleAsHexadecimal { }
 
 // MARK: - RGB Based Models
 
@@ -46,7 +46,7 @@ public struct HSL: RGBColorModel {
 // MARK: - CMYK Based Models
 
 /// Defines an CMYK color model with CMYK components
-public struct CMYK: ColorModel, HEXValueConvertible {
+public struct CMYK: ColorModel, ExpressibleAsHexadecimal {
     public var cyan: CGFloat
     public var magenta: CGFloat
     public var yellow: CGFloat
