@@ -58,7 +58,7 @@ extension HEXValueConvertible where Self: Color, Self.ModelType: HEXValueConvert
 
 extension RGBColorModel {
     /// Returns the hex value for an RGB color
-    public var hexValue: String { return "RGB Hex" }
+    public var hexValue: String { fatalError() }
 }
 
 extension HEXValueConvertible where Self == RGB {
@@ -84,7 +84,7 @@ extension HEXValueConvertible where Self == HSL {
 
 extension HEXValueConvertible where Self == CMYK {
     /// Returns the hex value for a CMYK color
-    public var hexValue: String { return "CMYK Hex" }
+    public var hexValue: String { fatalError() }
     /// Makes an CMYK representation of the specified hex value
     ///
     /// - Parameter hexValue: The CMYK hex value of this color
