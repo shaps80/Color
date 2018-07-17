@@ -34,38 +34,8 @@ extension SystemColor {
     ///
     /// - Parameter color: The HSV color representation
     public convenience init(color: Color<HSV>) {
-        let h = color.model.hue
-        let s = color.model.saturation
-        let v = color.model.value
-
-        if s == 0 { // Achromatic grey
-            self.init(red: v, green: v, blue: v, alpha: color.model.alpha)
-            return
-        }
-
-        let angle = (h >= 360 ? 0 : h)
-        let sector = angle / 60 // Sector
-        let i = floor(sector)
-        let f = sector - i // Factorial part of h
-
-        let p = v * (1 - s)
-        let q = v * (1 - (s * f))
-        let t = v * (1 - (s * (1 - f)))
-
-        switch(i) {
-        case 0:
-            self.init(red: v, green: t, blue: p, alpha: color.model.alpha)
-        case 1:
-            self.init(red: q, green: v, blue: p, alpha: color.model.alpha)
-        case 2:
-            self.init(red: p, green: v, blue: t, alpha: color.model.alpha)
-        case 3:
-            self.init(red: p, green: q, blue: v, alpha: color.model.alpha)
-        case 4:
-            self.init(red: t, green: p, blue: v, alpha: color.model.alpha)
-        default:
-            self.init(red: v, green: p, blue: q, alpha: color.model.alpha)
-        }
+        let rgb = color.rgb
+        self.init(red: rgb.model.red, green: rgb.model.green, blue: rgb.model.blue, alpha: rgb.model.alpha)
     }
 
     /// Makes a new system color using an CMYK value
@@ -99,7 +69,7 @@ extension SystemColor {
         let blue: CGFloat = cgColor?.components?[2] ?? 0
         let alpha: CGFloat = cgColor?.components?[3] ?? 0
 
-        return Color(RGB(red: red, blue: blue, green: green, alpha: alpha))
+        return Color(RGB(red: red, green: green, blue: blue, alpha: alpha))
     }
 
     /// Returns an HSV color representation

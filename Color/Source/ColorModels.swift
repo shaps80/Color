@@ -22,8 +22,8 @@ public protocol RGBColorModel: ColorModel, ExpressibleAsHexadecimal { }
 /// Defines an RGB color model with RGB components
 public struct RGB: RGBColorModel {
     public var red: CGFloat
-    public var blue: CGFloat
     public var green: CGFloat
+    public var blue: CGFloat
     public var alpha: CGFloat
 }
 
