@@ -91,8 +91,8 @@ extension SystemColor {
 
     /// Returns an RGB color representation
     public var rgb: Color<RGB> {
-        let colorSpace = CGColorSpace(name: CGColorSpace.extendedSRGB)!
-        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)
+        let colorSpace = CGColorSpace(name: CGColorSpace.displayP3)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .perceptual, options: nil)
 
         let red: CGFloat = cgColor?.components?[0] ?? 0
         let green: CGFloat = cgColor?.components?[1] ?? 0
@@ -135,28 +135,32 @@ extension SystemColor {
 
     /// Returns an HSL color representation
     public var hsl: Color<HSL> {
-        let colorSpace = CGColorSpace(name: CGColorSpace.extendedSRGB)!
-        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)
+        let colorSpace = CGColorSpace(name: CGColorSpace.displayP3)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .perceptual, options: nil)!
+        let color = SystemColor(cgColor: cgColor)
 
-        let hue: CGFloat = cgColor?.components?[0] ?? 0
-        let saturation: CGFloat = cgColor?.components?[1] ?? 0
-        let lightness: CGFloat = cgColor?.components?[2] ?? 0
-        let alpha: CGFloat = cgColor?.components?[3] ?? 0
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var lightness: CGFloat = 0
+        var alpha: CGFloat = 0
 
+        color?.getHue(&hue, saturation: &saturation, brightness: &lightness, alpha: &alpha)
         return Color(HSL(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha))
     }
 
     /// Returns an CMYK color representation
     public var cmyk: Color<CMYK> {
         let colorSpace = CGColorSpace(name: CGColorSpace.genericCMYK)!
-        let cgColor = self.cgColor.converted(to: colorSpace, intent: .defaultIntent, options: nil)!
+        let cgColor = self.cgColor.converted(to: colorSpace, intent: .perceptual, options: nil)!
+        let color = SystemColor(cgColor: cgColor)
 
-        let cyan: CGFloat = cgColor.components?[0] ?? 0
-        let magenta: CGFloat = cgColor.components?[1] ?? 0
-        let yellow: CGFloat = cgColor.components?[2] ?? 0
-        let black: CGFloat = cgColor.components?[3] ?? 0
-        let alpha: CGFloat = cgColor.components?[4] ?? 0
+        var cyan: CGFloat = 0
+        var magenta: CGFloat = 0
+        var yellow: CGFloat = 0
+        var black: CGFloat = 0
+        var alpha: CGFloat = 0
 
+        color?.getCyan(&cyan, magenta: &magenta, yellow: &yellow, black: &black, alpha: &alpha)
         return Color(CMYK(cyan: cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha))
     }
 
